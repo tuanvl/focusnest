@@ -44,14 +44,34 @@
       padding: 26px 0 18px;
       text-align: center;
     }
+    .brand-row {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
     .brand-pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       font-weight: 800;
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       color: var(--text);
-      margin-bottom: 8px;
+    }
+    .gift-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+      border: 1px solid #fcd34d;
+      color: #92400e;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      box-shadow: 0 1px 4px rgba(217, 119, 6, 0.12);
     }
     .hero h1 {
       margin: 0 auto 8px;
@@ -363,7 +383,10 @@
 <body>
 
   <header class="wrap hero">
-    <div class="brand-pill">🛡️ FocusNest</div>
+    <div class="brand-row">
+      <span class="brand-pill">🛡️ FocusNest</span>
+      <span class="gift-badge">🎁 Quà tặng từ Nexamind</span>
+    </div>
     <h1>Giúp con tập trung học trên MacBook — Ba mẹ an tâm đồng hành</h1>
     <p class="lead">Chặn game &amp; web xấu, mở riêng trang học tập (hoặc YouTube có báo cáo), tự khóa giờ đi ngủ và quản lý từ điện thoại.</p>
     <div class="badges">
@@ -623,7 +646,7 @@
   </main>
 
   <footer class="wrap">
-    <strong>🛡️ FocusNest</strong> — Chạy cục bộ trên macOS, bảo vệ sự tập trung và an toàn của trẻ em ·
+    <strong>🛡️ FocusNest</strong> — Quà tặng miễn phí từ <strong>Nexamind</strong> dành tặng quý phụ huynh ·
     <a href="https://github.com/tuanvl/focusnest/releases/latest" target="_blank" rel="noopener">Các phiên bản phát hành</a>
   </footer>
 
