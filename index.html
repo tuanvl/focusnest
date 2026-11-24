@@ -572,23 +572,36 @@
       <div class="card">
         <h2>Câu hỏi thường gặp</h2>
 
+        <details open>
+          <summary>1. FocusNest khác gì với Screen Time có sẵn trên máy Mac?</summary>
+          <div class="detail-body">
+            Screen Time có sẵn rất tiện để khóa tải App Store hoặc quản lý iPhone/iPad, nhưng trên <strong>MacBook học online</strong> FocusNest bổ sung 4 điểm mà Screen Time không làm được:
+            <ul class="tips-list">
+              <li><strong>Chặn chặt mọi trình duyệt:</strong> Screen Time chủ yếu lọc được Safari (mở Chrome dễ vượt), còn FocusNest chặn từ tầng DNS toàn máy và khóa luôn Ẩn danh + Secure DNS trên Chrome/Brave/Edge.</li>
+              <li><strong>Mở YouTube học nhưng vẫn giám sát được:</strong> Báo cáo chi tiết từng video &amp; Shorts bé đã xem (kênh nào, mấy giờ, bao nhiêu phút) thay vì chỉ ghi số phút chung chung.</li>
+              <li><strong>Xem trực tiếp &amp; AI cuối ngày:</strong> Thấy tab ăn CPU cao (web game) theo thời gian thực, Timeline cả ngày và AI tóm tắt thói quen học tập.</li>
+              <li><strong>Điều khiển từ cả iPhone lẫn Android:</strong> Không bắt buộc dùng chung iPhone, bấm <strong>+15p / +30p</strong> tức thì không bị trễ đồng bộ iCloud. <em>(Có thể bật song song cùng Screen Time, không xung đột.)</em></li>
+            </ul>
+          </div>
+        </details>
+
         <details>
-          <summary>1. Máy Mac chip Intel cũ hay Apple Silicon (M1–M4) mới cài được?</summary>
+          <summary>2. Máy Mac chip Intel cũ hay Apple Silicon (M1–M4) mới cài được?</summary>
           <div class="detail-body"><strong>Cài được cả hai.</strong> Bộ cài Universal hỗ trợ cả MacBook chip Apple Silicon và chip Intel (macOS 12 trở lên).</div>
         </details>
 
         <details>
-          <summary>2. Cài xong con vào web trường học bị chặn thì sao?</summary>
+          <summary>3. Cài xong con vào web trường học bị chặn thì sao?</summary>
           <div class="detail-body">Mặc định khi mới cài, FocusNest dùng chế độ <strong>Bảo vệ thông minh</strong> (không khóa Whitelist) nên web học bình thường vẫn vào được. Nếu bạn bật <strong>Chế độ Học tập</strong>, chỉ cần vào tab <strong>🔴 Đang diễn ra</strong> bấm <strong>+ Cho phép</strong> tên miền trường.</div>
         </details>
 
         <details>
-          <summary>3. AI nhận xét cuối ngày có mất phí không?</summary>
+          <summary>4. AI nhận xét cuối ngày có mất phí không?</summary>
           <div class="detail-body"><strong>Không bắt buộc và miễn phí với Google Gemini.</strong> Ba mẹ dùng API Key miễn phí của chính tài khoản Google tại <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>, dữ liệu gửi thẳng từ máy nhà bạn.</div>
         </details>
 
         <details>
-          <summary>4. Tại sao cài bằng lệnh Terminal, có an toàn không?</summary>
+          <summary>5. Tại sao cài bằng lệnh Terminal, có an toàn không?</summary>
           <div class="detail-body">
             Do bộ cài miễn phí chưa mua chứng chỉ Apple Developer ($99/năm), cài qua Terminal giúp macOS không chặn cửa sổ cài. Toàn bộ script và checksum SHA-256 đều công khai:
             <a href="https://tuanvl.github.io/focusnest/install.sh" target="_blank" rel="noopener">install.sh</a> ·
