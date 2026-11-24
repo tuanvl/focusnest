@@ -355,10 +355,10 @@
       <a class="brand" href="#">🛡️ FocusNest</a>
       <nav class="nav-links">
         <a href="#cai-dat">Cài đặt 30s</a>
+        <a href="#tai-khoan-con">Tài khoản cho con</a>
         <a href="#tinh-nang">Tính năng</a>
         <a href="#dien-thoai">Dùng trên điện thoại</a>
         <a href="#faq">Hỏi đáp</a>
-        <a href="#go-cai-dat">Gỡ cài đặt</a>
       </nav>
     </div>
   </header>
@@ -413,7 +413,7 @@
         </div>
 
         <div class="callout callout-info">
-          ✨ <strong>Sau bước 3, ba mẹ không cần đụng vào Terminal nữa!</strong> Trình duyệt sẽ tự động mở màn hình <strong>Thiết lập 3 bước</strong> (đặt mật khẩu phụ huynh, chọn chế độ bảo vệ, chọn giờ đi ngủ). Từ lúc đó mọi thao tác đều làm bằng nút bấm trên web &amp; điện thoại.
+          ✨ <strong>Sau bước 3, ba mẹ không cần đụng vào Terminal nữa!</strong> Trình duyệt sẽ tự động mở màn hình <strong>Thiết lập 4 bước</strong>: đặt mật khẩu phụ huynh, chọn chế độ bảo vệ, chọn giờ đi ngủ và <strong>tự kiểm tra tài khoản Standard cho con</strong> (có sẵn nút mở ngay cài đặt Mac). Từ lúc đó mọi thao tác đều làm bằng nút bấm trên web &amp; điện thoại.
         </div>
       </div>
     </section>
@@ -457,27 +457,60 @@
       </div>
     </section>
 
-    <!-- SECTION 3: PHONE & STANDARD ACCOUNT -->
-    <section id="dien-thoai">
-      <div class="grid-2">
-        <div class="card">
-          <h2 class="section-title" style="font-size:1.2rem">📱 Điều khiển từ điện thoại ba mẹ</h2>
-          <ul class="tips-list">
-            <li><strong>Khi ở nhà (cùng Wi-Fi):</strong> Sau khi cài xong, vào tab <strong>⚙️ Cài đặt</strong> trong FocusNest để xem sẵn địa chỉ cố định dạng <code>http://tên-máy.local:8080</code> → bấm sao chép và mở trên Safari/Chrome điện thoại.</li>
-            <li>Chọn <strong>Thêm vào Màn hình chính (Add to Home Screen)</strong> trên điện thoại để mở nhanh như một ứng dụng.</li>
-            <li><strong>Khi đi làm bên ngoài (4G/5G):</strong> Cài app miễn phí <strong>Tailscale</strong> lên MacBook của con và điện thoại ba mẹ (đăng nhập cùng 1 tài khoản), rồi mở địa chỉ Tailscale cổng <code>:8080</code> là điều khiển được mọi lúc.</li>
+    <!-- SECTION 3: STANDARD ACCOUNT & PHONE -->
+    <section id="tai-khoan-con">
+      <div class="card">
+        <h2 class="section-title">👧 Thiết lập tài khoản riêng cho con (Rất quan trọng)</h2>
+        <p class="section-sub">
+          Làm 1 lần duy nhất trong 2 phút để bảo vệ không thể bị vượt rào:
+        </p>
+
+        <div class="callout callout-warn" style="margin-top:0;margin-bottom:16px">
+          <strong>Vì sao bước này cực kỳ cần thiết?</strong>
+          <ul style="margin:6px 0 0;padding-left:20px">
+            <li><strong>Chống tự tắt &amp; đổi Wi-Fi:</strong> Nếu con đang dùng quyền <em>Administrator</em>, con có thể tự đổi DNS Wi-Fi hoặc tắt dịch vụ FocusNest. Tài khoản <em>Standard</em> sẽ chặn hoàn toàn việc này.</li>
+            <li><strong>Bật đúng tính năng Khóa máy giờ đi ngủ:</strong> Để không bao giờ khóa nhầm ba mẹ khi làm việc, FocusNest <strong>chỉ tự động khóa màn hình tài khoản Standard</strong> (tài khoản Admin luôn được miễn).</li>
           </ul>
         </div>
 
-        <div class="card">
-          <h2 class="section-title" style="font-size:1.2rem">👧 Thiết lập tài khoản riêng cho con (rất nên làm)</h2>
-          <p class="section-sub" style="margin-bottom:10px">Để con không thể tự tắt FocusNest hay đổi cài đặt Wi-Fi:</p>
-          <ol class="tips-list">
-            <li>Mở <strong>System Settings → Users &amp; Groups</strong> trên MacBook.</li>
-            <li>Bấm <strong>Add User...</strong> tạo riêng cho con 1 tài khoản với quyền <strong>Standard (Tiêu chuẩn)</strong> — không phải Administrator.</li>
-            <li>Ba mẹ giữ mật khẩu tài khoản <strong>Administrator</strong> riêng.</li>
-          </ol>
+        <div class="grid-2">
+          <div class="step-box">
+            <span class="step-num">Tình huống A</span>
+            <h3>Tạo tài khoản mới cho con (máy mới / dùng chung)</h3>
+            <ol class="tips-list">
+              <li>Mở <strong>System Settings (Cài đặt hệ thống) → Users &amp; Groups</strong> trên MacBook.</li>
+              <li>Bấm <strong>Add User...</strong> (nhập mật khẩu máy nếu được hỏi).</li>
+              <li>Ở dòng loại tài khoản, chọn <strong>Standard (Tiêu chuẩn)</strong> — tuyệt đối không chọn Administrator.</li>
+              <li>Đặt tên &amp; mật khẩu cho con (nên bỏ chọn <em>Allow user to reset password using Apple Account</em>), rồi cho con đăng nhập tài khoản này khi học.</li>
+            </ol>
+          </div>
+
+          <div class="step-box">
+            <span class="step-num">Tình huống B</span>
+            <h3>Con đã dùng sẵn tài khoản Admin cũ (muốn giữ nguyên file &amp; bài tập cũ!)</h3>
+            <ol class="tips-list">
+              <li>Mở <strong>System Settings → Users &amp; Groups</strong> → bấm <strong>Add User...</strong> để tạo cho ba mẹ 1 tài khoản <strong>Administrator</strong> mới (vd đặt tên <code>BaMe</code>).</li>
+              <li>Bấm Menu <strong> → Log Out</strong> (Đăng xuất), sau đó đăng nhập vào tài khoản <code>BaMe</code> vừa tạo.</li>
+              <li>Mở lại <strong>Users &amp; Groups</strong> → bấm chữ <strong>ⓘ</strong> cạnh tài khoản cũ của con → <strong>gạt tắt công tắc "Allow this user to administer this computer"</strong>.</li>
+              <li>Khởi động lại máy để con dùng tiếp tài khoản cũ bình thường mà toàn bộ dữ liệu vẫn còn nguyên!</li>
+            </ol>
+          </div>
         </div>
+
+        <div class="callout callout-info">
+          💡 <strong>Có hỗ trợ ngay lúc cài đặt:</strong> Ở <strong>Bước 4</strong> của màn hình thiết lập FocusNest sau khi cài, hệ thống sẽ tự kiểm tra xem máy đã có tài khoản Standard hay chưa và hiển thị sẵn nút <strong>Mở ngay Users &amp; Groups</strong> cho ba mẹ.
+        </div>
+      </div>
+    </section>
+
+    <section id="dien-thoai">
+      <div class="card">
+        <h2 class="section-title" style="font-size:1.25rem">📱 Điều khiển từ điện thoại ba mẹ</h2>
+        <ul class="tips-list">
+          <li><strong>Khi ở nhà (cùng Wi-Fi):</strong> Sau khi cài xong, vào tab <strong>⚙️ Cài đặt</strong> trong FocusNest để xem sẵn địa chỉ cố định dạng <code>http://tên-máy.local:8080</code> → bấm sao chép và mở trên Safari/Chrome điện thoại.</li>
+          <li>Chọn <strong>Thêm vào Màn hình chính (Add to Home Screen)</strong> trên điện thoại để mở nhanh như một ứng dụng.</li>
+          <li><strong>Khi đi làm bên ngoài (4G/5G):</strong> Cài app miễn phí <strong>Tailscale</strong> lên MacBook của con và điện thoại ba mẹ (đăng nhập cùng 1 tài khoản), rồi mở địa chỉ Tailscale cổng <code>:8080</code> là điều khiển được mọi lúc.</li>
+        </ul>
       </div>
     </section>
 
