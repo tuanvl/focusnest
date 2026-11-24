@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>FocusNest — Giúp con tập trung học trên MacBook</title>
-  <meta name="description" content="Công cụ miễn phí, chạy 100% trên máy Mac giúp phụ huynh chặn game/web xấu, mở riêng trang học tập, hẹn giờ đi ngủ và xem báo cáo YouTube & AI cuối ngày." />
+  <meta name="description" content="Công cụ miễn phí chạy 100% cục bộ trên macOS giúp phụ huynh chặn game/web xấu, mở riêng trang học tập, hẹn giờ đi ngủ và xem báo cáo YouTube & AI cuối ngày." />
   <style>
     :root {
-      --bg: #f8fafc;
+      --bg: #f4f7fb;
       --surface: #ffffff;
       --text: #0f172a;
       --muted: #475569;
@@ -21,81 +21,63 @@
       --warn-text: #92400e;
       --code-bg: #0f172a;
       --code-text: #f8fafc;
-      --radius: 16px;
+      --radius: 14px;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.65;
+      line-height: 1.6;
     }
 
     .wrap {
-      max-width: 960px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 16px;
     }
 
-    /* Top Nav */
-    header {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 62px;
-      gap: 12px;
-    }
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--text);
-      text-decoration: none;
-    }
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      font-size: 0.92rem;
-    }
-    .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .nav-links a:hover { color: var(--primary); }
-
-    /* Hero */
+    /* Compact Header + Hero */
     .hero {
-      padding: 48px 0 36px;
+      padding: 26px 0 18px;
       text-align: center;
+    }
+    .brand-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .hero h1 {
+      margin: 0 auto 8px;
+      max-width: 680px;
+      font-size: clamp(1.45rem, 3.2vw, 2.05rem);
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+    }
+    .hero p.lead {
+      margin: 0 auto 12px;
+      max-width: 620px;
+      font-size: 0.96rem;
+      color: var(--muted);
     }
     .badges {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
+      gap: 6px;
     }
     .badge {
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: 999px;
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       font-weight: 600;
       color: var(--muted);
     }
@@ -104,216 +86,228 @@
       border-color: #bbf7d0;
       color: var(--ok);
     }
-    .hero h1 {
-      margin: 0 auto 14px;
-      max-width: 720px;
-      font-size: clamp(1.75rem, 3.6vw, 2.55rem);
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-    }
-    .hero p.lead {
-      margin: 0 auto 26px;
-      max-width: 650px;
-      font-size: 1.06rem;
-      color: var(--muted);
-    }
-    .hero-cta {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    /* Sticky 4-Tab Bar */
+    .tab-bar-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(244, 247, 251, 0.94);
+      backdrop-filter: blur(8px);
+      padding: 8px 0 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 18px;
+    }
+    .tab-bar {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 8px;
-      padding: 12px 20px;
-      border-radius: 10px;
-      font-size: 0.96rem;
-      font-weight: 700;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: transform 0.12s, background 0.15s;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 5px;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
     }
-    .btn:active { transform: translateY(1px); }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: var(--primary-dark); }
-    .btn-ghost { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
-    .btn-ghost:hover { background: #f1f5f9; }
-    .btn-sm { padding: 8px 14px; font-size: 0.88rem; border-radius: 8px; }
+    .tab-btn {
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 10px 8px;
+      border-radius: 9px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .tab-btn:hover { background: #f1f5f9; color: var(--text); }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.28);
+    }
 
-    /* Sections & Cards */
-    section { padding: 26px 0; }
+    /* Panels & Cards */
+    .tab-panel { display: none; padding-bottom: 12px; }
+    .tab-panel.active { display: block; }
+
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 26px;
-      box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+      padding: 20px 22px;
+      margin-bottom: 14px;
+      box-shadow: 0 1px 6px rgba(15, 23, 42, 0.04);
     }
-    .section-title {
+    .card h2 {
       margin: 0 0 6px;
-      font-size: 1.4rem;
+      font-size: 1.22rem;
     }
-    .section-sub {
-      margin: 0 0 20px;
+    .sub {
+      margin: 0 0 14px;
       color: var(--muted);
-      font-size: 0.97rem;
+      font-size: 0.94rem;
     }
 
     /* Install Command Box */
     .cmd-box {
       background: var(--code-bg);
       color: var(--code-text);
-      border-radius: 12px;
-      padding: 14px 16px;
+      border-radius: 11px;
+      padding: 12px 14px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
-      margin: 14px 0;
+      margin: 10px 0 14px;
     }
     .cmd-box code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 0.92rem;
+      font-size: 0.88rem;
       word-break: break-all;
-      line-height: 1.5;
       flex: 1;
-      min-width: 240px;
+      min-width: 220px;
     }
     .btn-copy {
       background: #3b82f6;
       color: #fff;
-      padding: 9px 15px;
+      padding: 8px 14px;
       border-radius: 8px;
       border: none;
       font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       cursor: pointer;
       white-space: nowrap;
     }
     .btn-copy:hover { background: #2563eb; }
     .btn-copy.copied { background: #16a34a; }
 
-    /* 3 Steps */
-    .steps-grid {
+    /* Steps & Summary Grid */
+    .steps-3 {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 14px;
-      margin-top: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
     }
     .step-box {
       background: #f8fafc;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
+      border-radius: 11px;
+      padding: 13px 14px;
     }
     .step-num {
       display: inline-block;
       background: var(--primary-soft);
       color: var(--primary-dark);
       font-weight: 800;
-      font-size: 0.82rem;
-      padding: 3px 10px;
+      font-size: 0.78rem;
+      padding: 2px 9px;
       border-radius: 999px;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
-    .step-box h3 {
-      margin: 0 0 6px;
-      font-size: 1.02rem;
-    }
-    .step-box p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+    .step-box h3 { margin: 0 0 4px; font-size: 0.96rem; }
+    .step-box p { margin: 0; color: var(--muted); font-size: 0.88rem; }
 
     kbd {
       display: inline-block;
-      padding: 1px 6px;
-      font-size: 0.83rem;
+      padding: 1px 5px;
+      font-size: 0.8rem;
       font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
       background: #fff;
       border: 1px solid #cbd5e1;
       border-bottom-width: 2px;
-      border-radius: 5px;
+      border-radius: 4px;
       color: var(--text);
     }
 
     .callout {
-      margin-top: 16px;
-      padding: 13px 16px;
+      margin-top: 12px;
+      padding: 11px 14px;
       border-radius: 10px;
-      font-size: 0.93rem;
+      font-size: 0.9rem;
     }
-    .callout-info {
+    .callout-info { background: var(--primary-soft); border: 1px solid #bfdbfe; color: #1e3a8a; }
+    .callout-warn { background: var(--warn-soft); border: 1px solid #fde68a; color: var(--warn-text); }
+
+    .benefit-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 10px;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+    .benefit-item {
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
+    .benefit-item strong { color: var(--text); display: block; margin-bottom: 2px; }
+
+    .next-link-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 12px;
+    }
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: var(--primary-soft);
+      color: var(--primary-dark);
       border: 1px solid #bfdbfe;
-      color: #1e3a8a;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: none;
     }
-    .callout-warn {
-      background: var(--warn-soft);
-      border: 1px solid #fde68a;
-      color: var(--warn-text);
-    }
+    .btn-link:hover { background: #dbeafe; }
 
-    /* Features Grid */
-    .features-grid {
+    /* Case Switcher (Tab 2) */
+    .case-switcher {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 14px;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 12px 0;
     }
-    .feat-card {
-      background: var(--surface);
+    .case-btn {
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 20px;
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 11px 12px;
+      text-align: left;
+      cursor: pointer;
+      color: var(--text);
+      transition: border-color 0.15s, background 0.15s;
     }
-    .feat-icon {
-      font-size: 1.7rem;
-      margin-bottom: 8px;
-      display: block;
+    .case-btn strong { display: block; font-size: 0.93rem; }
+    .case-btn span { font-size: 0.82rem; color: var(--muted); }
+    .case-btn.active {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      box-shadow: inset 0 0 0 1px var(--primary);
     }
-    .feat-card h3 {
-      margin: 0 0 6px;
-      font-size: 1.03rem;
-    }
-    .feat-card p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
+    .case-panel { display: none; background: #f8fafc; border: 1px solid var(--border); border-radius: 11px; padding: 14px 18px; }
+    .case-panel.active { display: block; }
+    .case-panel ol { margin: 6px 0 0; padding-left: 20px; color: var(--muted); font-size: 0.92rem; }
+    .case-panel li { margin-bottom: 6px; }
 
-    /* Two columns */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 16px;
-    }
-    .tips-list {
-      margin: 8px 0 0;
-      padding-left: 20px;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-    .tips-list li { margin-bottom: 8px; }
-
-    /* Details / FAQ */
+    /* Accordion / Details */
     details {
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 11px;
       background: var(--surface);
-      padding: 14px 18px;
-      margin-bottom: 10px;
+      padding: 11px 15px;
+      margin-bottom: 8px;
     }
     summary {
       font-weight: 700;
       cursor: pointer;
-      font-size: 0.98rem;
+      font-size: 0.94rem;
       list-style: none;
       display: flex;
       justify-content: space-between;
@@ -324,373 +318,350 @@
     summary::after { content: "＋"; color: var(--muted); font-weight: 700; }
     details[open] summary::after { content: "－"; }
     details .detail-body {
-      margin-top: 12px;
-      padding-top: 12px;
+      margin-top: 10px;
+      padding-top: 10px;
       border-top: 1px solid var(--border);
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: 0.9rem;
     }
+    .tips-list { margin: 6px 0 0; padding-left: 18px; color: var(--muted); font-size: 0.9rem; }
+    .tips-list li { margin-bottom: 6px; }
+
+    .tabs-mini-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+    }
+    .tab-mini-item {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 11px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .tab-mini-item strong { color: var(--text); display: block; margin-bottom: 2px; }
 
     footer {
-      margin-top: 32px;
-      padding: 26px 0 40px;
+      margin-top: 16px;
+      padding: 18px 0 28px;
       border-top: 1px solid var(--border);
       color: var(--muted);
-      font-size: 0.88rem;
+      font-size: 0.84rem;
       text-align: center;
     }
     footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
     footer a:hover { text-decoration: underline; }
 
-    @media (max-width: 620px) {
-      .nav-links { display: none; }
-      .card { padding: 18px; }
+    @media (max-width: 640px) {
+      .tab-bar { grid-template-columns: 1fr 1fr; }
+      .case-switcher { grid-template-columns: 1fr; }
+      .card { padding: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="#">🛡️ FocusNest</a>
-      <nav class="nav-links">
-        <a href="#cai-dat">Cài đặt 30s</a>
-        <a href="#tai-khoan-con">Tài khoản con</a>
-        <a href="#huong-dan">Cách dùng</a>
-        <a href="#tinh-nang">Tính năng</a>
-        <a href="#faq">Hỏi đáp</a>
-      </nav>
+  <header class="wrap hero">
+    <div class="brand-pill">🛡️ FocusNest</div>
+    <h1>Giúp con tập trung học trên MacBook — Ba mẹ an tâm đồng hành</h1>
+    <p class="lead">Chặn game &amp; web xấu, mở riêng trang học tập (hoặc YouTube có báo cáo), tự khóa giờ đi ngủ và quản lý từ điện thoại.</p>
+    <div class="badges">
+      <span class="badge badge-ok">✓ Miễn phí</span>
+      <span class="badge">macOS Chip M1–M4 &amp; Intel</span>
+      <span class="badge">100% cục bộ — Không thu thập dữ liệu</span>
     </div>
   </header>
 
-  <main class="wrap">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="badges">
-        <span class="badge badge-ok">✓ Miễn phí cho gia đình</span>
-        <span class="badge">macOS Chip M1–M4 &amp; Intel</span>
-        <span class="badge">100% cục bộ — Không thu thập dữ liệu</span>
-      </div>
-      <h1>Giúp con tập trung học trên MacBook — Ba mẹ an tâm đồng hành</h1>
-      <p class="lead">
-        Chặn game, mạng xã hội &amp; web xấu; mở riêng trang học tập (hoặc cho phép YouTube học bài có báo cáo chi tiết); tự khóa máy giờ đi ngủ và điều khiển ngay từ điện thoại ba mẹ.
-      </p>
-      <div class="hero-cta">
-        <a href="#cai-dat" class="btn btn-primary">⚡ Cài đặt ngay trong 30 giây</a>
-        <a href="#tinh-nang" class="btn btn-ghost">Xem tính năng</a>
-      </div>
-    </section>
+  <div class="tab-bar-wrap">
+    <div class="wrap">
+      <nav class="tab-bar" role="tablist" aria-label="Điều hướng chính">
+        <button type="button" class="tab-btn active" data-tab="cai-dat" onclick="switchTab('cai-dat')">⚡ 1. Cài đặt (30s)</button>
+        <button type="button" class="tab-btn" data-tab="tai-khoan-con" onclick="switchTab('tai-khoan-con')">👧 2. Tài khoản con</button>
+        <button type="button" class="tab-btn" data-tab="cach-dung" onclick="switchTab('cach-dung')">📖 3. Cách dùng</button>
+        <button type="button" class="tab-btn" data-tab="hoi-dap" onclick="switchTab('hoi-dap')">❓ 4. Hỏi đáp &amp; Gỡ</button>
+      </nav>
+    </div>
+  </div>
 
-    <!-- SECTION 1: 1-LINE INSTALL -->
-    <section id="cai-dat">
+  <main class="wrap">
+    <!-- TAB 1: CÀI ĐẶT -->
+    <section id="panel-cai-dat" class="tab-panel active">
       <div class="card">
-        <h2 class="section-title">Cài đặt nhanh trong 30 giây (Khuyên dùng)</h2>
-        <p class="section-sub">
-          Cách này chạy thẳng qua Terminal của macOS nên <strong>không bị cảnh báo chặn file từ Internet</strong> và luôn tải đúng phiên bản cho máy Mac của bạn.
-        </p>
+        <h2>Cài đặt nhanh bằng 1 dòng lệnh (Khuyên dùng)</h2>
+        <p class="sub">Chạy qua Terminal của macOS để <strong>không bị cảnh báo chặn file</strong> và tự tải đúng bản cho máy Mac của bạn.</p>
 
         <div class="cmd-box">
           <code id="install-cmd">/bin/bash -c "$(curl -fsSL https://tuanvl.github.io/focusnest/install.sh)"</code>
           <button type="button" class="btn-copy" onclick="copyCmd('install-cmd', this)">📋 Sao chép lệnh</button>
         </div>
 
-        <div class="steps-grid">
+        <div class="steps-3">
           <div class="step-box">
             <span class="step-num">Bước 1</span>
-            <h3>Mở ứng dụng Terminal</h3>
-            <p>Trên MacBook của con, bấm tổ hợp <kbd>⌘ Command</kbd> + <kbd>Space</kbd>, gõ chữ <strong>Terminal</strong> rồi nhấn <kbd>Enter</kbd>.</p>
+            <h3>Mở Terminal</h3>
+            <p>Trên Mac của con, bấm <kbd>⌘ Command</kbd> + <kbd>Space</kbd>, gõ <strong>Terminal</strong> rồi nhấn <kbd>Enter</kbd>.</p>
           </div>
           <div class="step-box">
             <span class="step-num">Bước 2</span>
-            <h3>Dán lệnh vừa sao chép</h3>
-            <p>Bấm <kbd>⌘ Command</kbd> + <kbd>V</kbd> để dán dòng lệnh phía trên vào cửa sổ Terminal, sau đó nhấn <kbd>Enter</kbd>.</p>
+            <h3>Dán lệnh</h3>
+            <p>Bấm <kbd>⌘ Command</kbd> + <kbd>V</kbd> vào Terminal rồi nhấn <kbd>Enter</kbd>.</p>
           </div>
           <div class="step-box">
             <span class="step-num">Bước 3</span>
-            <h3>Nhập mật khẩu máy Mac</h3>
-            <p>Gõ mật khẩu đăng nhập máy Mac rồi nhấn <kbd>Enter</kbd>. <em>(Khi gõ màn hình sẽ không hiện dấu <code>*</code> — đó là bình thường của macOS.)</em></p>
+            <h3>Gõ mật khẩu Mac</h3>
+            <p>Gõ mật khẩu máy Mac rồi nhấn <kbd>Enter</kbd>. <em>(Sẽ không hiện dấu <code>*</code> khi gõ — cứ gõ bình thường.)</em></p>
           </div>
         </div>
 
         <div class="callout callout-info">
-          ✨ <strong>Sau bước 3, ba mẹ không cần đụng vào Terminal nữa!</strong> Trình duyệt sẽ tự động mở màn hình <strong>Thiết lập 4 bước</strong>: đặt mật khẩu phụ huynh, chọn chế độ bảo vệ, chọn giờ đi ngủ và <strong>tự kiểm tra tài khoản Standard cho con</strong> (có sẵn nút mở ngay cài đặt Mac). Từ lúc đó mọi thao tác đều làm bằng nút bấm trên web &amp; điện thoại.
+          ✨ Cài xong, trình duyệt sẽ <strong>tự mở màn hình Thiết lập 4 bước</strong> (đặt mật khẩu, chọn chế độ, hẹn giờ ngủ, kiểm tra tài khoản con) — từ đó ba mẹ không cần đụng Terminal nữa.
+        </div>
+
+        <div class="benefit-strip">
+          <div class="benefit-item"><strong>🛡️ Chặn game &amp; ẩn danh</strong>Chặn Roblox/Steam/18+, khóa Incognito &amp; Secure DNS.</div>
+          <div class="benefit-item"><strong>📚 Chế độ Học tập</strong>Gạt 1 nút để chỉ cho vào các trang học đã duyệt.</div>
+          <div class="benefit-item"><strong>📺 YouTube &amp; AI báo cáo</strong>Xem từng video con mở và AI nhận xét cuối ngày.</div>
+          <div class="benefit-item"><strong>🌙 Khóa ngủ &amp; +15/30p</strong>Tự khóa màn hình giờ ngủ, gia hạn ngay trên điện thoại.</div>
+        </div>
+
+        <div class="next-link-row">
+          <button type="button" class="btn-link" onclick="switchTab('tai-khoan-con')">Tiếp theo: Thiết lập tài khoản cho con →</button>
         </div>
       </div>
-    </section>
 
-    <!-- SECTION 2: FEATURES -->
-    <section id="tinh-nang">
-      <h2 class="section-title">FocusNest làm được gì cho gia đình?</h2>
-      <p class="section-sub">Thiết kế riêng cho phụ huynh có con học tập trên máy tính Mac — nhẹ, khó lách luật và tôn trọng quyền riêng tư.</p>
-
-      <div class="features-grid">
-        <div class="feat-card">
-          <span class="feat-icon">🛡️</span>
-          <h3>Chặn game, web xấu &amp; chống lách luật</h3>
-          <p>Chặn ngay từ tầng DNS trên toàn bộ trình duyệt &amp; app (Roblox, Steam, Discord, 18+, cờ bạc), đồng thời khóa luôn chế độ Ẩn danh (Incognito) và Secure DNS để bé không tự vượt rào.</p>
-        </div>
-        <div class="feat-card">
-          <span class="feat-icon">📚</span>
-          <h3>Chế độ Học tập (Whitelist-only)</h3>
-          <p>Khi bật chỉ 1 nút gạt, máy chỉ vào được các trang học tập ba mẹ đã duyệt (Google Classroom/Docs, LMS trường, Khan Academy, VioEdu, OLM, Duolingo, ChatGPT...).</p>
-        </div>
-        <div class="feat-card">
-          <span class="feat-icon">📺</span>
-          <h3>Mở YouTube học bài + Báo cáo chi tiết</h3>
-          <p>Không phải cấm tuyệt đối YouTube: ba mẹ có thể cho phép dùng khi học nhưng xem lại được <strong>từng video &amp; Shorts bé đã xem</strong>, kênh nào, xem lúc mấy giờ và bao nhiêu phút mỗi ngày.</p>
-        </div>
-        <div class="feat-card">
-          <span class="feat-icon">🌙</span>
-          <h3>Giờ đi ngủ tự khóa máy &amp; Gia hạn linh hoạt</h3>
-          <p>Hẹn giờ đi ngủ tự động (nhắc trước 5 phút rồi khóa màn hình tài khoản của bé — vẫn an toàn nếu ba mẹ đang dùng tài khoản Admin). Cần làm bài muộn? Bấm <strong>+15p / +30p</strong> ngay trên điện thoại.</p>
-        </div>
-        <div class="feat-card">
-          <span class="feat-icon">🤖</span>
-          <h3>Timeline &amp; AI nhận xét cuối ngày</h3>
-          <p>Tổng hợp dòng thời gian mở ứng dụng/tiêu đề cửa sổ cả ngày. Ba mẹ có thể dán <strong>Gemini API Key miễn phí của riêng mình</strong> để AI viết nhận xét thói quen học và gợi ý đồng hành.</p>
-        </div>
-        <div class="feat-card">
-          <span class="feat-icon">🔒</span>
-          <h3>100% cục bộ — Không thu thập dữ liệu</h3>
-          <p>FocusNest chạy hoàn toàn trên MacBook trong nhà bạn, không có máy chủ trung tâm theo dõi hay bán dữ liệu trẻ em. Mật khẩu và API Key chỉ lưu ngay trên máy.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 3: STANDARD ACCOUNT & PHONE -->
-    <section id="tai-khoan-con">
-      <div class="card">
-        <h2 class="section-title">👧 Thiết lập tài khoản riêng cho con (Rất quan trọng)</h2>
-        <p class="section-sub">
-          Làm 1 lần duy nhất trong 2 phút để bảo vệ không thể bị vượt rào:
-        </p>
-
-        <div class="callout callout-warn" style="margin-top:0;margin-bottom:16px">
-          <strong>Vì sao bước này cực kỳ cần thiết?</strong>
-          <ul style="margin:6px 0 0;padding-left:20px">
-            <li><strong>Chống tự tắt &amp; đổi Wi-Fi:</strong> Nếu con đang dùng quyền <em>Administrator</em>, con có thể tự đổi DNS Wi-Fi hoặc tắt dịch vụ FocusNest. Tài khoản <em>Standard</em> sẽ chặn hoàn toàn việc này.</li>
-            <li><strong>Bật đúng tính năng Khóa máy giờ đi ngủ:</strong> Để không bao giờ khóa nhầm ba mẹ khi làm việc, FocusNest <strong>chỉ tự động khóa màn hình tài khoản Standard</strong> (tài khoản Admin luôn được miễn).</li>
-          </ul>
-        </div>
-
-        <div class="grid-2">
-          <div class="step-box">
-            <span class="step-num">Tình huống A</span>
-            <h3>Tạo tài khoản mới cho con (máy mới / dùng chung)</h3>
-            <ol class="tips-list">
-              <li>Mở <strong>System Settings (Cài đặt hệ thống) → Users &amp; Groups</strong> trên MacBook.</li>
-              <li>Bấm <strong>Add User...</strong> (nhập mật khẩu máy nếu được hỏi).</li>
-              <li>Ở dòng loại tài khoản, chọn <strong>Standard (Tiêu chuẩn)</strong> — tuyệt đối không chọn Administrator.</li>
-              <li>Đặt tên &amp; mật khẩu cho con (nên bỏ chọn <em>Allow user to reset password using Apple Account</em>), rồi cho con đăng nhập tài khoản này khi học.</li>
-            </ol>
-          </div>
-
-          <div class="step-box">
-            <span class="step-num">Tình huống B</span>
-            <h3>Con đã dùng sẵn tài khoản Admin cũ (muốn giữ nguyên file &amp; bài tập cũ!)</h3>
-            <ol class="tips-list">
-              <li>Mở <strong>System Settings → Users &amp; Groups</strong> → bấm <strong>Add User...</strong> để tạo cho ba mẹ 1 tài khoản <strong>Administrator</strong> mới (vd đặt tên <code>BaMe</code>).</li>
-              <li>Bấm Menu <strong> → Log Out</strong> (Đăng xuất), sau đó đăng nhập vào tài khoản <code>BaMe</code> vừa tạo.</li>
-              <li>Mở lại <strong>Users &amp; Groups</strong> → bấm chữ <strong>ⓘ</strong> cạnh tài khoản cũ của con → <strong>gạt tắt công tắc "Allow this user to administer this computer"</strong>.</li>
-              <li>Khởi động lại máy để con dùng tiếp tài khoản cũ bình thường mà toàn bộ dữ liệu vẫn còn nguyên!</li>
-            </ol>
-          </div>
-        </div>
-
-        <div class="callout callout-info">
-          💡 <strong>Có hỗ trợ ngay lúc cài đặt:</strong> Ở <strong>Bước 4</strong> của màn hình thiết lập FocusNest sau khi cài, hệ thống sẽ tự kiểm tra xem máy đã có tài khoản Standard hay chưa và hiển thị sẵn nút <strong>Mở ngay Users &amp; Groups</strong> cho ba mẹ.
-        </div>
-      </div>
-    </section>
-
-    <section id="dien-thoai">
-      <div class="card">
-        <h2 class="section-title" style="font-size:1.25rem">📱 Điều khiển từ điện thoại ba mẹ</h2>
-        <ul class="tips-list">
-          <li><strong>Khi ở nhà (cùng Wi-Fi):</strong> Sau khi cài xong, vào tab <strong>⚙️ Cài đặt</strong> trong FocusNest để xem sẵn địa chỉ cố định dạng <code>http://tên-máy.local:8080</code> → bấm sao chép và mở trên Safari/Chrome điện thoại.</li>
-          <li>Chọn <strong>Thêm vào Màn hình chính (Add to Home Screen)</strong> trên điện thoại để mở nhanh như một ứng dụng.</li>
-          <li><strong>Khi đi làm bên ngoài (4G/5G):</strong> Cài app miễn phí <strong>Tailscale</strong> lên MacBook của con và điện thoại ba mẹ (đăng nhập cùng 1 tài khoản), rồi mở địa chỉ Tailscale cổng <code>:8080</code> là điều khiển được mọi lúc.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- SECTION: DAILY USAGE GUIDE -->
-    <section id="huong-dan">
-      <div class="card">
-        <h2 class="section-title">📖 Hướng dẫn sử dụng hàng ngày</h2>
-        <p class="section-sub">Gói gọn toàn bộ thao tác ba mẹ thường dùng nhất — không cần nhớ kỹ thuật.</p>
-
-        <h3 style="margin:0 0 10px;font-size:1.05rem">1. Làm quen 6 tab trong 10 giây</h3>
-        <div class="steps-grid" style="margin-top:0;margin-bottom:22px">
-          <div class="step-box">
-            <h3>🏠 Tổng quan</h3>
-            <p>Bật/tắt bảo vệ, bật Chế độ Học tập, Khóa máy ngay và bấm gia hạn <strong>+15p / +30p</strong>.</p>
-          </div>
-          <div class="step-box">
-            <h3>🔴 Đang diễn ra</h3>
-            <p>Xem ứng dụng/cửa sổ đang mở, cảnh báo tab ăn CPU cao (web game) và nhật ký web vừa truy cập.</p>
-          </div>
-          <div class="step-box">
-            <h3>📊 Báo cáo &amp; AI</h3>
-            <p>Xem dòng thời gian cả ngày, từng video/Shorts YouTube con đã xem và AI nhận xét cuối ngày.</p>
-          </div>
-          <div class="step-box">
-            <h3>🛡️ Bộ lọc</h3>
-            <p>Bật/tắt nhóm nội dung chặn (Game, MXH, 18+...) và quản lý danh sách Cho phép / Chặn.</p>
-          </div>
-          <div class="step-box">
-            <h3>⏰ Lịch trình</h3>
-            <p>Đặt hạn mức phút YouTube/màn hình mỗi ngày và hẹn giờ đi ngủ tự khóa máy (ngày thường / cuối tuần).</p>
-          </div>
-          <div class="step-box">
-            <h3>⚙️ Cài đặt</h3>
-            <p>Đổi mật khẩu, xem link mở trên điện thoại, nhập Gemini API Key miễn phí và kiểm tra tài khoản Standard.</p>
-          </div>
-        </div>
-
-        <h3 style="margin:0 0 12px;font-size:1.05rem">2. 5 tình huống ba mẹ dùng hàng ngày</h3>
-
-        <details open>
-          <summary>1️⃣ Khi con bảo "trang trường học / bài tập bị chặn" thì mở ở đâu?</summary>
-          <div class="detail-body">
-            <ol class="tips-list" style="margin-top:0">
-              <li>Mở FocusNest trên điện thoại → vào tab <strong>🔴 Đang diễn ra</strong> (hoặc mục <em>Lần chặn gần đây</em> ở tab <strong>🏠 Tổng quan</strong>).</li>
-              <li>Tìm tên miền vừa hiện <strong>Bị chặn</strong> (ví dụ trang của trường hoặc trang nộp bài).</li>
-              <li>Bấm nút <strong>+ Cho phép</strong> ngay bên cạnh — trang đó sẽ vào được tức thì (hoặc vào tab <strong>🛡️ Bộ lọc → Danh sách Cho phép</strong> để gõ thêm tên miền).</li>
-            </ol>
-          </div>
-        </details>
-
-        <details>
-          <summary>2️⃣ Cho con làm bài muộn hoặc xin giải lao mà không cần sửa lịch cố định?</summary>
-          <div class="detail-body">
-            Ngay tại tab <strong>🏠 Tổng quan</strong>, ba mẹ có sẵn 2 nút nhanh:
-            <ul class="tips-list">
-              <li><strong>⏱️ Gia hạn thêm giờ (+15p / +30p):</strong> Hoãn giờ khóa máy đi ngủ hoặc nới thêm thời gian khi đã chạm hạn mức ngày. Hết 15/30 phút máy tự khóa lại đúng lịch cũ.</li>
-              <li><strong>🎮 Mở giải lao tạm thời (+15p / +30p):</strong> Tạm tắt <em>Chế độ Học tập (Whitelist-only)</em> để con tra cứu/đọc tin tự do hơn một chút, nhưng vẫn giữ chặn game, 18+, cờ bạc.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details>
-          <summary>3️⃣ Kiểm tra con đang làm gì &amp; xử lý khi nghi con chơi web game?</summary>
-          <div class="detail-body">
-            Vào tab <strong>🔴 Đang diễn ra</strong> (tự cập nhật mỗi 5 giây):
-            <ul class="tips-list">
-              <li>Xem ứng dụng đang chạy ở tiền cảnh và dòng cảnh báo màu cam nếu trình duyệt/ứng dụng ăn <strong>CPU cao</strong> (dấu hiệu thường gặp khi chơi game 3D trên web).</li>
-              <li>Ba mẹ có thể bấm <strong>Đóng</strong> tiến trình game ngay từ xa, hoặc bật gạt <strong>Chế độ Học tập</strong> tại tab Tổng quan.</li>
-            </ul>
-          </div>
-        </details>
-
-        <details>
-          <summary>4️⃣ Đặt hạn mức YouTube / màn hình mỗi ngày &amp; đổi giờ ngủ cuối tuần</summary>
-          <div class="detail-body">
-            Vào tab <strong>⏰ Lịch trình</strong>:
-            <ul class="tips-list">
-              <li><strong>Hạn mức sử dụng mỗi ngày:</strong> Nhập số phút tối đa cho <em>YouTube mỗi ngày</em> (ví dụ <code>45</code> phút) hoặc <em>tổng thời gian màn hình</em> (ví dụ <code>180</code> phút), để <code>0</code> nếu không giới hạn.</li>
-              <li><strong>Lịch trình theo khung giờ:</strong> Mỗi gia đình có thể bật/tắt, bấm <strong>Sửa</strong> khung giờ đi ngủ, hoặc tạo riêng 1 lịch cho T2–T6 (21:45–07:00) và 1 lịch muộn hơn cho T7–CN (22:30–08:00).</li>
-            </ul>
-          </div>
-        </details>
-
-        <details>
-          <summary>5️⃣ Bật Trợ lý AI nhận xét cuối ngày (3 bước lấy Gemini API Key miễn phí)</summary>
-          <div class="detail-body">
-            <ol class="tips-list" style="margin-top:0">
-              <li>Mở <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> bằng Google của ba mẹ → bấm <strong>Create API Key</strong> → sao chép mã bắt đầu bằng <code>AIza...</code></li>
-              <li>Vào tab <strong>⚙️ Cài đặt</strong> trong FocusNest → dán mã vào ô <strong>API Key</strong> → bấm <strong>Lưu cấu hình AI</strong> (mặc định sẽ tự tổng kết mỗi tối lúc 21:50).</li>
-              <li>Vào tab <strong>📊 Báo cáo &amp; AI</strong> → bấm <strong>✨ Tạo nhận xét AI</strong> bất cứ lúc nào để xem tóm tắt thời gian học/giải trí và gợi ý trao đổi cùng con.</li>
-            </ol>
-            <p style="margin:8px 0 0"><em>Mẹo nhỏ: Nếu muốn Timeline hiện rõ tiêu đề từng cửa sổ và lịch sử YouTube trên Safari, ba mẹ mở System Settings → Privacy &amp; Security để bật thêm Screen Recording / Full Disk Access cho FocusNest (không bắt buộc — Chrome/Edge/Brave và bộ lọc web vẫn chạy bình thường).</em></p>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <!-- SECTION 4: FALLBACK DMG -->
-    <section id="cai-bang-file">
       <details>
-        <summary>💿 Cách cài dự phòng bằng file tải về (.dmg) — dành cho ai không muốn mở Terminal</summary>
+        <summary>💿 Hoặc tải file cài đặt (.dmg) nếu không muốn mở Terminal</summary>
         <div class="detail-body">
-          <p>
-            Bạn có thể tải bộ cài dạng file <code>.dmg</code> gồm sẵn cả file Cài đặt và Gỡ cài đặt:
+          <p style="margin-top:0">
+            <a class="btn-link" href="https://github.com/tuanvl/focusnest/releases/latest/download/FocusNest-Mac.dmg" target="_blank" rel="noopener">⬇️ Tải FocusNest-Mac.dmg (Chip M &amp; Intel)</a>
           </p>
-          <p>
-            <a class="btn btn-ghost btn-sm" href="https://github.com/tuanvl/focusnest/releases/latest/download/FocusNest-Mac.dmg" target="_blank" rel="noopener">⬇️ Tải FocusNest-Mac.dmg (Universal Mac)</a>
-          </p>
-          <div class="callout callout-warn">
-            Vì bản miễn phí chưa mua chứng chỉ Apple Developer ($99/năm), macOS sẽ hiện cảnh báo chưa xác minh khi mở file <code>.pkg</code> bên trong. Cách mở chỉ mất 10 giây:
-            <ol style="margin:8px 0 0;padding-left:20px">
-              <li>Nhấn đúp file <strong>1-Cai-dat-FocusNest.pkg</strong> → bấm <strong>Done (Xong)</strong> khi thấy thông báo chặn.</li>
-              <li>Mở <strong>System Settings → Privacy &amp; Security</strong> → kéo xuống gần cuối và bấm nút <strong>Open Anyway (Vẫn mở)</strong>.</li>
-              <li>Nhập mật khẩu máy Mac để hoàn tất cài đặt.</li>
-            </ol>
+          <div class="callout callout-warn" style="margin-top:8px">
+            Vì bản miễn phí chưa mua chứng chỉ Apple Developer ($99/năm), macOS sẽ báo chưa xác minh khi mở <code>1-Cai-dat-FocusNest.pkg</code>: bấm <strong>Done</strong> → mở <strong>System Settings → Privacy &amp; Security</strong> → kéo xuống bấm <strong>Open Anyway</strong>.
           </div>
         </div>
       </details>
     </section>
 
-    <!-- SECTION 5: UNINSTALL -->
-    <section id="go-cai-dat">
+    <!-- TAB 2: TÀI KHOẢN CON -->
+    <section id="panel-tai-khoan-con" class="tab-panel">
       <div class="card">
-        <h2 class="section-title">🧹 Gỡ cài đặt hoàn toàn bất cứ lúc nào</h2>
-        <p class="section-sub">
-          Muốn dừng sử dụng? Chạy 1 dòng lệnh dưới đây trong Terminal để gỡ sạch dịch vụ, trả lại cài đặt trình duyệt và khôi phục Wi-Fi về mặc định:
-        </p>
+        <h2>Thiết lập tài khoản Standard riêng cho con (Làm 1 lần trong 2 phút)</h2>
+        <div class="callout callout-warn" style="margin-top:6px">
+          <strong>Vì sao bước này rất quan trọng?</strong>
+          <ul class="tips-list">
+            <li><strong>Chống vượt rào:</strong> Tài khoản <em>Standard (Tiêu chuẩn)</em> không thể tự đổi DNS Wi-Fi hay tắt dịch vụ FocusNest.</li>
+            <li><strong>Đúng cơ chế khóa giờ ngủ:</strong> FocusNest chỉ tự khóa màn hình tài khoản <em>Standard</em> để không khóa nhầm ba mẹ khi làm việc.</li>
+          </ul>
+        </div>
+
+        <p class="sub" style="margin:14px 0 6px">Chọn đúng tình huống máy nhà bạn để xem hướng dẫn:</p>
+        <div class="case-switcher">
+          <button type="button" id="case-btn-a" class="case-btn active" onclick="switchCase('a')">
+            <strong>Tình huống A: Tạo tài khoản mới cho con</strong>
+            <span>Dành cho máy mới hoặc máy dùng chung với ba mẹ</span>
+          </button>
+          <button type="button" id="case-btn-b" class="case-btn" onclick="switchCase('b')">
+            <strong>Tình huống B: Con đang dùng nick Admin cũ</strong>
+            <span>Muốn hạ xuống Standard mà giữ nguyên toàn bộ file &amp; bài tập!</span>
+          </button>
+        </div>
+
+        <div id="case-panel-a" class="case-panel active">
+          <strong>4 bước tạo tài khoản mới (Standard):</strong>
+          <ol>
+            <li>Mở <strong>System Settings (Cài đặt hệ thống) → Users &amp; Groups</strong>.</li>
+            <li>Bấm <strong>Add User...</strong> (nhập mật khẩu máy nếu được hỏi).</li>
+            <li>Ở mục loại tài khoản, chọn <strong>Standard (Tiêu chuẩn)</strong> — không chọn Administrator.</li>
+            <li>Đặt tên &amp; mật khẩu cho con (nên bỏ chọn <em>Allow user to reset password using Apple Account</em>), rồi cho con đăng nhập tài khoản này khi học.</li>
+          </ol>
+        </div>
+
+        <div id="case-panel-b" class="case-panel">
+          <strong>4 bước giữ nguyên dữ liệu cũ của con:</strong>
+          <ol>
+            <li>Mở <strong>System Settings → Users &amp; Groups</strong> → bấm <strong>Add User...</strong> tạo cho ba mẹ 1 tài khoản <strong>Administrator</strong> mới (vd đặt tên <code>BaMe</code>).</li>
+            <li>Bấm Menu <strong> → Log Out</strong> (Đăng xuất), sau đó đăng nhập vào tài khoản <code>BaMe</code> vừa tạo.</li>
+            <li>Mở lại <strong>Users &amp; Groups</strong> → bấm chữ <strong>ⓘ</strong> cạnh tài khoản cũ của con → <strong>gạt tắt "Allow this user to administer this computer"</strong>.</li>
+            <li>Khởi động lại máy để con dùng tiếp tài khoản cũ bình thường mà mọi file vẫn nguyên vẹn!</li>
+          </ol>
+        </div>
+
+        <div class="callout callout-info">
+          💡 Ngay trong <strong>Bước 4</strong> lúc thiết lập FocusNest sau khi cài, hệ thống tự kiểm tra giúp ba mẹ xem máy đã có tài khoản Standard chưa và có sẵn nút <strong>Mở ngay Users &amp; Groups</strong>.
+        </div>
+
+        <div class="next-link-row">
+          <button type="button" class="btn-link" onclick="switchTab('cach-dung')">Tiếp theo: Xem cách dùng hàng ngày →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: CÁCH DÙNG -->
+    <section id="panel-cach-dung" class="tab-panel">
+      <div class="card">
+        <h2>📱 Mở bảng điều khiển trên điện thoại ba mẹ</h2>
+        <ul class="tips-list" style="margin-top:4px">
+          <li><strong>Cùng Wi-Fi ở nhà:</strong> Sau khi cài xong, vào tab <strong>⚙️ Cài đặt</strong> trong FocusNest xem sẵn link <code>http://tên-máy.local:8080</code> → mở trên Safari/Chrome điện thoại và chọn <strong>Thêm vào Màn hình chính</strong>.</li>
+          <li><strong>Ra ngoài dùng 4G/5G:</strong> Cài app miễn phí <strong>Tailscale</strong> lên MacBook của con và điện thoại ba mẹ (cùng 1 tài khoản), rồi mở IP Tailscale cổng <code>:8080</code>.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5 tình huống ba mẹ dùng hàng ngày</h2>
+        <p class="sub">Bấm vào từng dòng để xem thao tác nhanh:</p>
+
+        <details open>
+          <summary>1. Con bảo "trang trường học / bài tập bị chặn" thì mở ở đâu?</summary>
+          <div class="detail-body">
+            Mở tab <strong>🔴 Đang diễn ra</strong> (hoặc mục <em>Lần chặn gần đây</em> ở tab <strong>🏠 Tổng quan</strong>) → tìm tên miền vừa hiện <strong>Bị chặn</strong> → bấm <strong>+ Cho phép</strong> ngay bên cạnh là con vào được tức thì.
+          </div>
+        </details>
+
+        <details>
+          <summary>2. Cho con làm bài muộn hoặc giải lao mà không cần sửa lịch?</summary>
+          <div class="detail-body">
+            Ngay tại tab <strong>🏠 Tổng quan</strong>, bấm <strong>+15p</strong> hoặc <strong>+30p</strong> ở mục <em>⏱️ Gia hạn thêm giờ</em> (hoãn giờ đi ngủ/hạn mức) hoặc <em>🎮 Mở giải lao tạm thời</em> (tạm mở web ngoài Whitelist nhưng vẫn chặn game/18+).
+          </div>
+        </details>
+
+        <details>
+          <summary>3. Kiểm tra con đang làm gì &amp; xử lý khi nghi con chơi web game?</summary>
+          <div class="detail-body">
+            Vào tab <strong>🔴 Đang diễn ra</strong> (tự làm mới 5 giây/lần) để xem cửa sổ đang mở và cảnh báo màu cam khi trình duyệt ăn <strong>CPU cao</strong>. Ba mẹ có thể bấm <strong>Đóng</strong> tiến trình ngay từ xa hoặc bật <strong>Chế độ Học tập</strong>.
+          </div>
+        </details>
+
+        <details>
+          <summary>4. Đặt hạn mức phút YouTube / màn hình &amp; chỉnh giờ ngủ cuối tuần</summary>
+          <div class="detail-body">
+            Vào tab <strong>⏰ Lịch trình</strong> để nhập số phút tối đa/ngày cho YouTube hoặc tổng thời gian dùng máy (để <code>0</code> nếu không giới hạn), và bật/sửa riêng lịch đi ngủ cho T2–T6 và T7–CN.
+          </div>
+        </details>
+
+        <details>
+          <summary>5. Bật Trợ lý AI nhận xét cuối ngày (Gemini Key miễn phí)</summary>
+          <div class="detail-body">
+            <ol class="tips-list" style="margin-top:0">
+              <li>Vào <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> → bấm <strong>Create API Key</strong> → sao chép mã <code>AIza...</code></li>
+              <li>Vào tab <strong>⚙️ Cài đặt</strong> trong FocusNest → dán vào mục <strong>Trợ lý AI</strong> → bấm <strong>Lưu cấu hình AI</strong>.</li>
+              <li>Vào tab <strong>📊 Báo cáo &amp; AI</strong> bấm <strong>✨ Tạo nhận xét AI</strong> bất cứ lúc nào (hoặc xem tự động mỗi tối 21:50).</li>
+            </ol>
+            <p style="margin:6px 0 0"><em>Mẹo: Nếu muốn Timeline hiện rõ tiêu đề cửa sổ &amp; YouTube trên Safari, có thể cấp thêm quyền Screen Recording / Full Disk Access trong System Settings → Privacy &amp; Security.</em></p>
+          </div>
+        </details>
+
+        <details style="margin-top:12px">
+          <summary>📋 Xem tóm tắt nhanh ý nghĩa 6 tab trong FocusNest</summary>
+          <div class="detail-body">
+            <div class="tabs-mini-grid">
+              <div class="tab-mini-item"><strong>🏠 Tổng quan</strong>Bật/tắt lọc, Chế độ Học tập, Khóa máy ngay &amp; +15/30p.</div>
+              <div class="tab-mini-item"><strong>🔴 Đang diễn ra</strong>Xem app đang mở, cảnh báo CPU cao &amp; web vừa truy cập.</div>
+              <div class="tab-mini-item"><strong>📊 Báo cáo &amp; AI</strong>Timeline cả ngày, video YouTube đã xem &amp; nhận xét AI.</div>
+              <div class="tab-mini-item"><strong>🛡️ Bộ lọc</strong>Chọn nhóm chặn (Game, MXH, 18+...) &amp; Whitelist/Blacklist.</div>
+              <div class="tab-mini-item"><strong>⏰ Lịch trình</strong>Hạn mức phút mỗi ngày &amp; hẹn giờ đi ngủ theo thứ.</div>
+              <div class="tab-mini-item"><strong>⚙️ Cài đặt</strong>Đổi mật khẩu, link điện thoại, Gemini Key &amp; tài khoản con.</div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- TAB 4: HỎI ĐÁP & GỠ CÀI ĐẶT -->
+    <section id="panel-hoi-dap" class="tab-panel">
+      <div class="card">
+        <h2>Câu hỏi thường gặp</h2>
+
+        <details>
+          <summary>1. Máy Mac chip Intel cũ hay Apple Silicon (M1–M4) mới cài được?</summary>
+          <div class="detail-body"><strong>Cài được cả hai.</strong> Bộ cài Universal hỗ trợ cả MacBook chip Apple Silicon và chip Intel (macOS 12 trở lên).</div>
+        </details>
+
+        <details>
+          <summary>2. Cài xong con vào web trường học bị chặn thì sao?</summary>
+          <div class="detail-body">Mặc định khi mới cài, FocusNest dùng chế độ <strong>Bảo vệ thông minh</strong> (không khóa Whitelist) nên web học bình thường vẫn vào được. Nếu bạn bật <strong>Chế độ Học tập</strong>, chỉ cần vào tab <strong>🔴 Đang diễn ra</strong> bấm <strong>+ Cho phép</strong> tên miền trường.</div>
+        </details>
+
+        <details>
+          <summary>3. AI nhận xét cuối ngày có mất phí không?</summary>
+          <div class="detail-body"><strong>Không bắt buộc và miễn phí với Google Gemini.</strong> Ba mẹ dùng API Key miễn phí của chính tài khoản Google tại <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>, dữ liệu gửi thẳng từ máy nhà bạn.</div>
+        </details>
+
+        <details>
+          <summary>4. Tại sao cài bằng lệnh Terminal, có an toàn không?</summary>
+          <div class="detail-body">
+            Do bộ cài miễn phí chưa mua chứng chỉ Apple Developer ($99/năm), cài qua Terminal giúp macOS không chặn cửa sổ cài. Toàn bộ script và checksum SHA-256 đều công khai:
+            <a href="https://tuanvl.github.io/focusnest/install.sh" target="_blank" rel="noopener">install.sh</a> ·
+            <a href="https://tuanvl.github.io/focusnest/uninstall.sh" target="_blank" rel="noopener">uninstall.sh</a> ·
+            <a href="https://github.com/tuanvl/focusnest/releases/latest/download/checksums.txt" target="_blank" rel="noopener">checksums.txt</a>.
+          </div>
+        </details>
+      </div>
+
+      <div class="card">
+        <h2>🧹 Gỡ cài đặt hoàn toàn bất cứ lúc nào</h2>
+        <p class="sub">Chạy 1 dòng lệnh dưới đây trong Terminal để gỡ sạch FocusNest và tự khôi phục DNS Wi-Fi về mặc định:</p>
         <div class="cmd-box">
           <code id="uninstall-cmd">/bin/bash -c "$(curl -fsSL https://tuanvl.github.io/focusnest/uninstall.sh)"</code>
           <button type="button" class="btn-copy" onclick="copyCmd('uninstall-cmd', this)">📋 Sao chép lệnh gỡ</button>
         </div>
       </div>
     </section>
-
-    <!-- SECTION 6: FAQ -->
-    <section id="faq">
-      <h2 class="section-title">Câu hỏi thường gặp</h2>
-      <p class="section-sub">Giải đáp nhanh những thắc mắc phổ biến của phụ huynh trước và sau khi cài.</p>
-
-      <details>
-        <summary>1. Máy Mac đời cũ dùng chip Intel hay MacBook M1/M2/M3/M4 mới cài được?</summary>
-        <div class="detail-body">
-          <strong>Cài được cho cả hai!</strong> Bộ cài FocusNest được đóng gói dạng Universal Binary, tự chạy mượt trên cả MacBook chip Apple Silicon (M1–M4) lẫn MacBook chip Intel (macOS 12 trở lên).
-        </div>
-      </details>
-
-      <details>
-        <summary>2. Cài xong con vào web trường học bị chặn thì xử lý thế nào?</summary>
-        <div class="detail-body">
-          Mặc định khi vừa cài, FocusNest chạy ở chế độ <strong>Bảo vệ thông minh</strong> (chặn web xấu/game/18+ nhưng giữ mở web học bình thường) nên sẽ không gây vướng. Nếu bạn bật <strong>Chế độ Học tập (Whitelist-only)</strong> mà thiếu trang của trường con, bạn chỉ cần mở tab <strong>🔴 Đang diễn ra</strong> hoặc <strong>🛡️ Bộ lọc</strong> trên điện thoại rồi bấm <strong>+ Cho phép</strong> ngay là vào được tức thì.
-        </div>
-      </details>
-
-      <details>
-        <summary>3. AI nhận xét cuối ngày có mất phí không?</summary>
-        <div class="detail-body">
-          <strong>Không bắt buộc và hoàn toàn miễn phí với Google Gemini.</strong> FocusNest không thu tiền AI — ba mẹ có thể tự lấy 1 khóa API miễn phí tại <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> rồi dán vào mục <strong>⚙️ Cài đặt</strong> để dùng trực tiếp theo hạn mức miễn phí của chính Google dành cho tài khoản bạn.
-        </div>
-      </details>
-
-      <details>
-        <summary>4. Tại sao phải dùng lệnh Terminal, có an toàn không?</summary>
-        <div class="detail-body">
-          FocusNest chặn web ở tầng hệ thống (DNS toàn máy + chính sách trình duyệt + tự khóa màn hình) nên cần quyền quản trị viên khi cài đặt. Vì chúng tôi cung cấp miễn phí và chưa đăng ký gói Apple Developer trả phí hàng năm, cài qua lệnh giúp macOS không chặn cửa sổ cài đặt. Toàn bộ mã script cài đặt &amp; mã băm SHA-256 đều công khai để kiểm tra trước khi chạy:
-          <a href="https://tuanvl.github.io/focusnest/install.sh" target="_blank" rel="noopener">install.sh</a> ·
-          <a href="https://tuanvl.github.io/focusnest/uninstall.sh" target="_blank" rel="noopener">uninstall.sh</a> ·
-          <a href="https://github.com/tuanvl/focusnest/releases/latest/download/checksums.txt" target="_blank" rel="noopener">checksums.txt</a>.
-        </div>
-      </details>
-    </section>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <strong>🛡️ FocusNest</strong> — Chạy cục bộ trên macOS, vì sự tập trung và an toàn của trẻ em.<br />
-      Trang phân phối chính thức trên GitHub · <a href="https://github.com/tuanvl/focusnest/releases/latest" target="_blank" rel="noopener">Các phiên bản phát hành</a>
-    </div>
+  <footer class="wrap">
+    <strong>🛡️ FocusNest</strong> — Chạy cục bộ trên macOS, bảo vệ sự tập trung và an toàn của trẻ em ·
+    <a href="https://github.com/tuanvl/focusnest/releases/latest" target="_blank" rel="noopener">Các phiên bản phát hành</a>
   </footer>
 
   <script>
+    const TAB_ALIASES = {
+      'cai-dat': 'cai-dat',
+      'tai-khoan-con': 'tai-khoan-con',
+      'cach-dung': 'cach-dung',
+      'huong-dan': 'cach-dung',
+      'dien-thoai': 'cach-dung',
+      'tinh-nang': 'cai-dat',
+      'hoi-dap': 'hoi-dap',
+      'faq': 'hoi-dap',
+      'go-cai-dat': 'hoi-dap'
+    };
+
+    function switchTab(tabId, updateHash = true) {
+      const target = TAB_ALIASES[tabId] || 'cai-dat';
+      document.querySelectorAll('.tab-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.tab === target);
+      });
+      document.querySelectorAll('.tab-panel').forEach((panel) => {
+        panel.classList.toggle('active', panel.id === 'panel-' + target);
+      });
+      if (updateHash && window.location.hash !== '#' + target) {
+        history.replaceState(null, '', '#' + target);
+      }
+      const bar = document.querySelector('.tab-bar-wrap');
+      if (bar && bar.getBoundingClientRect().top < 0) {
+        bar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function switchCase(kind) {
+      const isA = kind !== 'b';
+      document.getElementById('case-btn-a').classList.toggle('active', isA);
+      document.getElementById('case-btn-b').classList.toggle('active', !isA);
+      document.getElementById('case-panel-a').classList.toggle('active', isA);
+      document.getElementById('case-panel-b').classList.toggle('active', !isA);
+    }
+
+    function applyHashTab() {
+      const raw = (window.location.hash || '').replace(/^#/, '').trim();
+      if (raw && TAB_ALIASES[raw]) {
+        switchTab(raw, false);
+      }
+    }
+
+    window.addEventListener('hashchange', applyHashTab);
+    applyHashTab();
+
     function copyCmd(id, btn) {
       const el = document.getElementById(id);
       if (!el) return;
