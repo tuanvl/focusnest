@@ -355,9 +355,9 @@
       <a class="brand" href="#">🛡️ FocusNest</a>
       <nav class="nav-links">
         <a href="#cai-dat">Cài đặt 30s</a>
-        <a href="#tai-khoan-con">Tài khoản cho con</a>
+        <a href="#tai-khoan-con">Tài khoản con</a>
+        <a href="#huong-dan">Cách dùng</a>
         <a href="#tinh-nang">Tính năng</a>
-        <a href="#dien-thoai">Dùng trên điện thoại</a>
         <a href="#faq">Hỏi đáp</a>
       </nav>
     </div>
@@ -511,6 +511,100 @@
           <li>Chọn <strong>Thêm vào Màn hình chính (Add to Home Screen)</strong> trên điện thoại để mở nhanh như một ứng dụng.</li>
           <li><strong>Khi đi làm bên ngoài (4G/5G):</strong> Cài app miễn phí <strong>Tailscale</strong> lên MacBook của con và điện thoại ba mẹ (đăng nhập cùng 1 tài khoản), rồi mở địa chỉ Tailscale cổng <code>:8080</code> là điều khiển được mọi lúc.</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- SECTION: DAILY USAGE GUIDE -->
+    <section id="huong-dan">
+      <div class="card">
+        <h2 class="section-title">📖 Hướng dẫn sử dụng hàng ngày</h2>
+        <p class="section-sub">Gói gọn toàn bộ thao tác ba mẹ thường dùng nhất — không cần nhớ kỹ thuật.</p>
+
+        <h3 style="margin:0 0 10px;font-size:1.05rem">1. Làm quen 6 tab trong 10 giây</h3>
+        <div class="steps-grid" style="margin-top:0;margin-bottom:22px">
+          <div class="step-box">
+            <h3>🏠 Tổng quan</h3>
+            <p>Bật/tắt bảo vệ, bật Chế độ Học tập, Khóa máy ngay và bấm gia hạn <strong>+15p / +30p</strong>.</p>
+          </div>
+          <div class="step-box">
+            <h3>🔴 Đang diễn ra</h3>
+            <p>Xem ứng dụng/cửa sổ đang mở, cảnh báo tab ăn CPU cao (web game) và nhật ký web vừa truy cập.</p>
+          </div>
+          <div class="step-box">
+            <h3>📊 Báo cáo &amp; AI</h3>
+            <p>Xem dòng thời gian cả ngày, từng video/Shorts YouTube con đã xem và AI nhận xét cuối ngày.</p>
+          </div>
+          <div class="step-box">
+            <h3>🛡️ Bộ lọc</h3>
+            <p>Bật/tắt nhóm nội dung chặn (Game, MXH, 18+...) và quản lý danh sách Cho phép / Chặn.</p>
+          </div>
+          <div class="step-box">
+            <h3>⏰ Lịch trình</h3>
+            <p>Đặt hạn mức phút YouTube/màn hình mỗi ngày và hẹn giờ đi ngủ tự khóa máy (ngày thường / cuối tuần).</p>
+          </div>
+          <div class="step-box">
+            <h3>⚙️ Cài đặt</h3>
+            <p>Đổi mật khẩu, xem link mở trên điện thoại, nhập Gemini API Key miễn phí và kiểm tra tài khoản Standard.</p>
+          </div>
+        </div>
+
+        <h3 style="margin:0 0 12px;font-size:1.05rem">2. 5 tình huống ba mẹ dùng hàng ngày</h3>
+
+        <details open>
+          <summary>1️⃣ Khi con bảo "trang trường học / bài tập bị chặn" thì mở ở đâu?</summary>
+          <div class="detail-body">
+            <ol class="tips-list" style="margin-top:0">
+              <li>Mở FocusNest trên điện thoại → vào tab <strong>🔴 Đang diễn ra</strong> (hoặc mục <em>Lần chặn gần đây</em> ở tab <strong>🏠 Tổng quan</strong>).</li>
+              <li>Tìm tên miền vừa hiện <strong>Bị chặn</strong> (ví dụ trang của trường hoặc trang nộp bài).</li>
+              <li>Bấm nút <strong>+ Cho phép</strong> ngay bên cạnh — trang đó sẽ vào được tức thì (hoặc vào tab <strong>🛡️ Bộ lọc → Danh sách Cho phép</strong> để gõ thêm tên miền).</li>
+            </ol>
+          </div>
+        </details>
+
+        <details>
+          <summary>2️⃣ Cho con làm bài muộn hoặc xin giải lao mà không cần sửa lịch cố định?</summary>
+          <div class="detail-body">
+            Ngay tại tab <strong>🏠 Tổng quan</strong>, ba mẹ có sẵn 2 nút nhanh:
+            <ul class="tips-list">
+              <li><strong>⏱️ Gia hạn thêm giờ (+15p / +30p):</strong> Hoãn giờ khóa máy đi ngủ hoặc nới thêm thời gian khi đã chạm hạn mức ngày. Hết 15/30 phút máy tự khóa lại đúng lịch cũ.</li>
+              <li><strong>🎮 Mở giải lao tạm thời (+15p / +30p):</strong> Tạm tắt <em>Chế độ Học tập (Whitelist-only)</em> để con tra cứu/đọc tin tự do hơn một chút, nhưng vẫn giữ chặn game, 18+, cờ bạc.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>3️⃣ Kiểm tra con đang làm gì &amp; xử lý khi nghi con chơi web game?</summary>
+          <div class="detail-body">
+            Vào tab <strong>🔴 Đang diễn ra</strong> (tự cập nhật mỗi 5 giây):
+            <ul class="tips-list">
+              <li>Xem ứng dụng đang chạy ở tiền cảnh và dòng cảnh báo màu cam nếu trình duyệt/ứng dụng ăn <strong>CPU cao</strong> (dấu hiệu thường gặp khi chơi game 3D trên web).</li>
+              <li>Ba mẹ có thể bấm <strong>Đóng</strong> tiến trình game ngay từ xa, hoặc bật gạt <strong>Chế độ Học tập</strong> tại tab Tổng quan.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>4️⃣ Đặt hạn mức YouTube / màn hình mỗi ngày &amp; đổi giờ ngủ cuối tuần</summary>
+          <div class="detail-body">
+            Vào tab <strong>⏰ Lịch trình</strong>:
+            <ul class="tips-list">
+              <li><strong>Hạn mức sử dụng mỗi ngày:</strong> Nhập số phút tối đa cho <em>YouTube mỗi ngày</em> (ví dụ <code>45</code> phút) hoặc <em>tổng thời gian màn hình</em> (ví dụ <code>180</code> phút), để <code>0</code> nếu không giới hạn.</li>
+              <li><strong>Lịch trình theo khung giờ:</strong> Mỗi gia đình có thể bật/tắt, bấm <strong>Sửa</strong> khung giờ đi ngủ, hoặc tạo riêng 1 lịch cho T2–T6 (21:45–07:00) và 1 lịch muộn hơn cho T7–CN (22:30–08:00).</li>
+            </ul>
+          </div>
+        </details>
+
+        <details>
+          <summary>5️⃣ Bật Trợ lý AI nhận xét cuối ngày (3 bước lấy Gemini API Key miễn phí)</summary>
+          <div class="detail-body">
+            <ol class="tips-list" style="margin-top:0">
+              <li>Mở <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> bằng Google của ba mẹ → bấm <strong>Create API Key</strong> → sao chép mã bắt đầu bằng <code>AIza...</code></li>
+              <li>Vào tab <strong>⚙️ Cài đặt</strong> trong FocusNest → dán mã vào ô <strong>API Key</strong> → bấm <strong>Lưu cấu hình AI</strong> (mặc định sẽ tự tổng kết mỗi tối lúc 21:50).</li>
+              <li>Vào tab <strong>📊 Báo cáo &amp; AI</strong> → bấm <strong>✨ Tạo nhận xét AI</strong> bất cứ lúc nào để xem tóm tắt thời gian học/giải trí và gợi ý trao đổi cùng con.</li>
+            </ol>
+            <p style="margin:8px 0 0"><em>Mẹo nhỏ: Nếu muốn Timeline hiện rõ tiêu đề từng cửa sổ và lịch sử YouTube trên Safari, ba mẹ mở System Settings → Privacy &amp; Security để bật thêm Screen Recording / Full Disk Access cho FocusNest (không bắt buộc — Chrome/Edge/Brave và bộ lọc web vẫn chạy bình thường).</em></p>
+          </div>
+        </details>
       </div>
     </section>
 
