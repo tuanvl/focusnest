@@ -39,10 +39,10 @@ for BROWSER_DOMAIN in com.google.Chrome com.brave.Browser com.microsoft.edgemac;
     PREF_PLIST="${PREF_DIR}/${BROWSER_DOMAIN}.plist"
     if [[ -f "$PREF_PLIST" ]]; then
       for KEY in DnsOverHttpsMode BuiltInDnsClientEnabled IncognitoModeAvailability BrowserGuestModeEnabled AllowDeletingBrowserHistory SavingBrowserHistoryDisabled QuicAllowed; do
-        defaults delete "$PREF_PLIST" "$KEY" >/dev/null 2>&1 || true
+        /usr/libexec/PlistBuddy -c "Delete :${KEY}" "$PREF_PLIST" >/dev/null 2>&1 || true
       done
-      REMAINING="$(defaults read "$PREF_PLIST" 2>/dev/null | tr -d '[:space:]' || true)"
-      if [[ "$REMAINING" == "{}" ]] || [[ -z "$REMAINING" ]]; then
+      REMAINING="$(/usr/libexec/PlistBuddy -c "Print" "$PREF_PLIST" 2>/dev/null | tr -d '[:space:]' || true)"
+      if [[ "$REMAINING" == "Dict{}" ]] || [[ "$REMAINING" == "{}" ]] || [[ -z "$REMAINING" ]]; then
         rm -f "$PREF_PLIST"
       fi
     fi
